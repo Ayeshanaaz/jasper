@@ -1,0 +1,63 @@
+
+Go through the programs in the following order:
+
+1. MainThread.java  (757 page explains thread life cycle)
+
+2. ThreadClass.java
+
+Lab: Create a thread by extending thread class.
+
+3. RunnableInterface.java
+
+Lab: Create a thread by implementing Runnable interface. 
+
+4. PutThreadToSleep.java
+
+Lab: Write a program that puts a thread to sleep for 1 minute.  
+
+5. MultipleThreads.java
+ 
+Lab: Create 2 threads by implementing Runnable interface and give different task for each of them.  
+
+6. ThreadJoinMethod.java
+
+Lab: Write a program that shows the use of thread 'join' method. 
+
+7. ThreadPriorities.java and yield method
+
+8. AtmTransaction.java
+
+Lab: Write a program showing two threads acting upon a single object. 
+
+Scenario: Let us think that only one berth is available in a train, and two passengers (threads) are asking for that berth. 
+In reservation counter no.1, the clerk has sent a request to the server to allot the berth to his passenger. In counter no.2,
+the second clerk has also sent a request to the server to allot that berth to his passenger. Write a program in such a way
+that it will never allot same berth for both the passengers.
+
+Steps inside 'ticketBooking( )' method:
+
+1. Proceed to ticket booking only if available berths are more than or equal to wanted berths. 
+2. Wait for 3 seconds to print the ticket
+3. Update the number of available berths after booking.
+ 
+9. ThreadDeadLock.java
+
+Lab: Write a program that causes thread dead lock.  
+
+10. InterthreadCommunication.java 
+
+11. InterthreadCommunication2.java
+
+Lab: Create producer and consumer threads where producer thread generates a number and consumer thread prints 
+that generated number. Use wait and notify methods to achieve this.
+
+The output should be like this:
+
+Generated: 1
+Printed: 1
+Generated: 2
+Printed: 2
+Generated: 3
+Printed: 3
+
+12. DemonThread.java

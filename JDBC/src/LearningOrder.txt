@@ -1,0 +1,73 @@
+
+Go through the programs in the following Order
+
+1. StatementDemo.java
+
+Lab: Display only the names of all students whose name starts and ends with letter 'n' or 'N'. 
+
+2. PreparedStatementDemo.java
+
+Lab: Write a program that takes student roll number as input at program run time and prints his name and mobile number. 
+
+3. CallableStatementDemo1.java
+
+Lab: Write a program that executes a database stored procedure. (search in google for some stored procedure copy paste
+that in mysql database and execute it)
+
+4. CallableStatementDemo2.java
+
+Lab: Write a program that executes a database function. (search in google for some function copy paste that in mysql 
+database and execute it). 
+
+5. Type1Driver.java
+
+Lab: Write a program using type1 driver and display all the records in students table in the descending order of their name.  
+
+6. ScrollableResultSet.java
+
+Lab: From students table display the 3 rows in the below mentioned order:
+
+5th row
+4th row
+1st row 
+
+7. UpdatableResultSet.java
+
+Lab: In students table create a new record, update a record and delete a record using ResultSet methods.   
+
+8. SavingImages.java
+
+Lab: Write a program to store and retrieve an image from database.  
+
+9. SavingFiles.java
+
+Lab: Write a program to store your resume in database. 
+
+10. TransactionManagement.java
+
+Lab: Create 2 tables in database 'Student' and 'Address' that has primary key and foreign key relationship. Execute 2 
+queries first query to insert record in student table and second query to insert record in address table. When inserting 
+record in address table if there is any run time error it should roll back the record in student table as well to maintain 
+data consistency.
+
+11. ResultSetMetaDataDemo.java
+
+Lab: Find the number of columns in the 'Address' table created in the previous example. 
+
+12. DatabaseMetaDataDemo.java
+
+Lab: Display only the system tables (tables created by mysql not user) present in the 'information_schema' database. 
+
+Hint: use String types[ ] = {"SYSTEM TABLE"}; 
+
+---------------------------------------------------------------------------------------
+
+Optional:
+
+BatchProcessing.java
+
+BatchProcessing2.java
+
+JdbcRowSetExample.java
+
+CachedRowSetExample.java

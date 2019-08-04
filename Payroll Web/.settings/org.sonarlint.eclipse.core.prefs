@@ -1,0 +1,4 @@
+autoEnabled=true
+eclipse.preferences.version=1
+extraProperties=
+fileExclusions=FILE\:src/com/virtusa/payroll/controller/LoginController.java\r\nFILE\:src/com/virtusa/payroll/controller/ViewController.java

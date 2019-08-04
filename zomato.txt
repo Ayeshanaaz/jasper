@@ -1,0 +1,288 @@
+create database zomato;
+use zomato;
+
+
+create table admin(
+ad_id int(5) primary key,
+ad_name varchar(20),
+ad_email varchar(25),
+ad_phone varchar(10)
+);
+
+insert into admin values(1,'aziz','aziz@gmail.com','1234567890');
+
+create table customer(
+cu_id int(5) primary key,
+cu_name varchar(20),
+cu_address varchar(20),
+cu_contact varchar(10) not null unique,
+cu_email varchar(20) not null unique
+);
+
+ insert into customer values(1001,'raj','hitech',1111111111,'raj@gmail.com');
+ insert into customer values(1002,'raju', 'dlf' ,2222222222 ,'raju@gmail.com');
+ insert into customer values(1003,'rajender','secbad',3333333333,'rajender@gmail.com');
+
+
+create table offer (
+of_id int(5) primary key,
+of_name varchar(10) not null unique,
+of_discount int(2),
+of_startdate date not null,
+of_enddate date not null
+);
+
+
+insert into offer values(2001,'5050' ,50,'2019-06-20','2019-06-30');
+insert into offer values(2002,'4040' ,40,'2019-06-20','2019-06-30');
+insert into offer values(2003,'3030' ,30,'2019-06-20','2019-06-30');
+insert into offer values(2004,'2020' ,20,'2019-06-20','2019-06-30');
+insert into offer values(2005,'1010' ,10,'2019-06-20','2019-06-30');
+
+
+create table delivery(
+de_id int(5) primary key,
+de_name varchar(20),
+de_address varchar(20),
+de_contact varchar(10) not null unique,
+de_email varchar(20) not null unique
+);
+
+insert into delivery values(3001,'mohan','sec-bad','7777777777','mohan@gmail.com');
+insert into delivery values(3002,'johan','hyd-bad','7777777771','johan@gmail.com');
+insert into delivery values(3003,'pohan','mus-bad','7777777772','pohan@gmail.com');
+insert into delivery values(3004,'yohan','MP','777777773','yohan@gmail.com');
+insert into delivery values(3005,'uohan','LP','777777774','uohan@gmail.com');
+
+
+create table restaurant (
+re_id int(5) primary key,
+re_name varchar(20),
+re_address varchar(20),
+re_contact varchar(10) not null unique,
+re_email varchar(20) not null unique
+);
+insert into restaurant values(4001,'mohan rest','sec-bad','7777777771','rest1@gmail.com');
+insert into restaurant values(4002,'johan rest','sec-bad','7777777772','rest2@gmail.com');
+insert into restaurant values(4003,'pohan rest','sec-bad','7777777773','rest3@gmail.com');
+insert into restaurant values(4004,'yohan rest','sec-bad','7777777774','rest4@gmail.com');
+insert into restaurant values(4005,'uohan rest','sec-bad','7777777775','rest5@gmail.com');
+
+
+create table menu(
+me_id int(5) primary key,
+me_name varchar(20),
+me_price float
+);
+insert into menu values(8001,'m biryani',100);
+insert into menu values(8002,'c biryani',400);
+insert into menu values(8003,'f biryani',300);
+insert into menu values(8004,'v biryani',200);
+
+create table membership (
+mm_id int(5) primary key,
+mm_cu_fk int(5) references customer(cu_id),
+mm_startdate date not null,
+mm_enddate date not null,
+mm_type varchar(10) not null
+);
+insert into membership  values(9001,1001,'2019-06-19','2019-06-29','silver');
+insert into membership  values(9002,1002,'2019-06-20','2019-06-29','gold');
+insert into membership  values(9003,1003,'2019-06-20','2019-06-29','iron');
+
+create table orderdetail (
+or_id int(5) primary key,
+or_re_fk int(5) references restaurant(re_id),
+or_cu_fk int(5) references customer(cu_id),
+or_me_id int(5) references menu(me_id),
+or_quantity int(3),
+or_status varchar(10),
+or_of_fk int(5)references offer(of_id)
+ );
+
+insert into orderdetail values(
+5001,4001,1001,8001,2,'accepted',2001
+);
+
+insert into orderdetail values(
+5002,4001,1002,8001,4,'accepted',2002
+);
+
+insert into orderdetail values(
+5003,4001,1003,8003,3,'not',null
+);
+
+
+
+
+
+create table payment (
+pa_id int(5) primary key,
+pa_type varchar(20)  not null,
+pa_status varchar(1),
+pa_or_fk int(5) references orderdetail(or_id),
+pa_cu_fk int(5) references customer(cu_id)
+);
+
+insert into payment values(9001,'cash','Y',5001,1001);
+insert into payment values(9002,'credit','Y',5002,1002);
+
+create table restarant_menu_detail(
+rm_id int(5) primary key,
+rm_me_fk int(5) references menu(me_id),
+rm_re_fk int(5) references restaurant(re_id)
+);
+
+insert into restarant_menu_detail values(1001,8001,4001);
+insert into restarant_menu_detail values(1002,8002,4001);
+insert into restarant_menu_detail values(1003,8003,4001);
+insert into restarant_menu_detail values(1004,8004,4001);
+
+insert into restarant_menu_detail values(1005,8001,4002);
+insert into restarant_menu_detail values(1006,8002,4002);
+insert into restarant_menu_detail values(1007,8003,4002);
+insert into restarant_menu_detail values(1008,8004,4002);
+
+
+insert into restarant_menu_detail values(1009,8001,4003);
+insert into restarant_menu_detail values(1010,8002,4003);
+insert into restarant_menu_detail values(1011,8003,4003);
+insert into restarant_menu_detail values(1012,8004,4003);
+
+
+
+
+
+
+
+
+
+
+
+
+create table delivery_details (dd_id int(5) primary key,dd_de_fk int(5) references delivery(de_id),
+dd_or_fk  int(5) references orderdetail(or_id),rating float);
+
+
+insert into delivery_details values(90001,3001,5001,null);
+
+insert into delivery_details values(90002,3002,5002,null);
+
+insert into delivery_details values(90003,3003,5003,null);
+
+
+update delivery_details set rating=4.5 where dd_id=90001;
+update delivery_details set rating=3.5 where dd_id=90002;
+update delivery_details set rating=1.0 where dd_id=90003;
+
+delete from delivery_details;
+delete from delivery_details where dd_id=90003;
+
+
+alter table <table> add col-name datatype <constraint>;
+alter table <table> rename <col-name> to <new-col>;
+alter table <table> drop column <col-name> ;
+
+
+alter
+--add
+  rename
+  drop
+  
+drop table tablmename;
+truncate table tablename;
+delete from tablename;
+
+
+
+
+
+
+
+
+
+select de_name,dd_or_fk,rating from delivery join delivery_detail
+on de_id=de_fk;
+
+
+select de_name,dd_or_fk,rating from delivery join delivery_detail
+on de_id=de_fk where rating>4.0;
+
+select de_name,dd_or_fk,rating from delivery join delivery_detail
+on de_id=de_fk and rating>4.0;
+
+select de_name,dd_or_fk,rating from delivery join delivery_detail
+on de_id=de_fk and rating>2.0 and rating<4.0;
+
+select de_name,dd_or_fk,rating from delivery left join delivery_detail
+on de_id=de_fk ;
+
+select de_name,dd_or_fk,rating from delivery right join delivery_detail
+on de_id=de_fk ;
+
+
+(select de_name,dd_or_fk,rating from delivery left join delivery_detail
+on de_id=de_fk) union
+(select de_name,dd_or_fk,rating from delivery right join delivery_detail
+on de_id=de_fk) ;
+
+
+select de_name,dd_or_fk,rating,or_quantity,or_status from delivery join delivery_detail
+on de_id=de_fk join orderdetail on or_id=dd_or_fk ;
+
+
+select de_name,dd_or_fk,rating,or_quantity,or_status from 
+delivery join delivery_detail join orderdetail 
+on (de_id=de_fk and or_id=dd_or_fk)
+
+
+
+select de_name,dd_or_fk,rating,or_quantity,or_status,me_name from delivery join delivery_detail
+on de_id=de_fk join orderdetail on or_id=dd_or_fk join menu on me_id=or_me_id ;
+
+select de_name,dd_or_fk,rating,or_quantity,or_status,me_name,re_name,
+me_price*or_quantity total_price,pa_status,cu_name 
+ from delivery join delivery_detail 
+on de_id=de_fk join orderdetail on or_id=dd_or_fk join menu on me_id=or_me_id join restaurant on re_id=or_re_fk
+join payment on pa_or_fk=or_id join customer on cu_id=or_cu_fk
+;
+
+select de_name,dd_or_fk,rating,or_quantity,or_status,me_name,re_name,
+me_price*or_quantity total_price,pa_status,cu_name 
+ from delivery join delivery_detail 
+on de_id=de_fk right join orderdetail on or_id=dd_or_fk join menu on me_id=or_me_id join restaurant on re_id=or_re_fk
+join payment on pa_or_fk=or_id join customer on cu_id=or_cu_fk
+;
+
+select de_name,dd_or_fk,rating,or_quantity,or_status,me_name,re_name,
+me_price*or_quantity total_price,pa_status,cu_name 
+ from delivery join delivery_detail 
+on de_id=de_fk right join orderdetail on or_id=dd_or_fk join menu on me_id=or_me_id join restaurant on re_id=or_re_fk
+left join payment on pa_or_fk=or_id join customer on cu_id=or_cu_fk
+;
+
+select * from orderdetail left join offer on of_id=or_of_fk;
+
+
+select od.*,od.or_quantity*u.me_price as total_price,
+ (od.or_quantity*u.me_price*o.of_discount)/100 amount_tobe_pay  
+ from orderdetail od left join offer o on od.or_of_fk=o.of_id
+join menu u on u.me_id=od.or_me_id
+;
+  select od.*,od.or_quantity*u.me_price as total_price,
+ (od.or_quantity*u.me_price*o.of_discount)/100 amount_tobe_pay  
+ from orderdetail od left join offer o on od.or_of_fk=o.of_id
+join menu u on u.me_id=od.or_me_id order by od.or_id desc 
+;
+
+  select od.*,od.or_quantity*u.me_price as total_price,
+ (od.or_quantity*u.me_price*o.of_discount)/100 amount_tobe_pay  
+ from orderdetail od left join offer o on od.or_of_fk=o.of_id
+join menu u on u.me_id=od.or_me_id order by od.or_id desc,od.OR_ME_ID  
+;
+
+
+
+ select cu_name,concat(cu_address,concat(' ',cu_email) from customer;
+
+

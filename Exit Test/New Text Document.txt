@@ -1,0 +1,132 @@
+Marker interface,interface, vedio tag,delete query,stack problem
+
+
+Serializable
+
+
+//Bleak Program
+
+import java.util.*;
+
+public class MyClass {
+   
+ public static void main(String args[]) {
+      
+  Scanner sc=new Scanner(System.in);
+     
+   int n=sc.nextInt();
+       
+ for(int i=0;i<n;i++)
+       
+ {
+          
+  int x=sc.nextInt();
+         
+   System.out.println(isBleak(x));
+        }
+    }
+ 
+ public static int isBleak(int x)
+    {
+  
+ for(int i=1;i<=x;i++)
+   {
+   
+ if(i+Integer.bitCount(i)==x)
+    
+return 0;
+   }
+ 
+   return 1;
+    }
+   
+ 
+    
+}
+
+
+
+
+//cutRoad
+
+
+
+static int cutRod(int price[],int n) 
+
+   
+ { 
+
+        int val[] = new int[n+1]; 
+
+  
+      val[0] = 0; 
+
+  
+
+      
+  // Build the table val[] in bottom up manner and return 
+
+   
+     // the last entry from the table 
+
+   
+     for (int i = 1; i<=n; i++) 
+
+        { 
+
+          
+  int max_val = Integer.MIN_VALUE; 
+
+            
+for (int j = 0; j < i; j++) 
+
+    
+            max_val = Math.max(max_val,                              
+     price[j] + val[i-j-1]); 
+
+          
+  val[i] = max_val; 
+
+
+
+        } 
+
+  
+
+        return val[n];
+
+
+
+
+
+
+
+
+Second max
+
+Given an array sort it and return yes if the array elements are consecutive else return no
+
+Sort the elements in an array of the smallest element is even number then the next number should be odd and vice-versa
+
+
+Anagrams
+
+Conversion (Java variable to cpp variable and vice versa)input cpp variable:hello_minion.  Output java variable:helloMinion and vice versa
+
+
+Count palindrome words in string
+
+
+Buddy and the challenge
+
+
+https://stackoverflow.com/questions/41958434/finding-the-number-of-visible-clothes-in-rope
+
+https://www.geeksforgeeks.org/pizza-cut-problem-circle-division-lines/
+
+
+https://www.geeksforgeeks.org/find-the-smallest-window-in-a-string-containing-all-characters-of-another-string/
+
+
+https://www.geeksforgeeks.org/print-postorder-from-given-inorder-and-preorder-traversals/
+

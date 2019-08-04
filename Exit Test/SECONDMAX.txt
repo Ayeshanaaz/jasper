@@ -1,0 +1,26 @@
+import java.util.*;
+class Secondmax
+{
+public static void main(String args[])
+{
+int n,i,c=0;
+Scanner sc=new Scanner(System.in);
+n=sc.nextInt();
+int a[]=new int[n];
+for(i=0;i<n;i++)
+{
+a[i]=sc.nextInt();
+}
+Arrays.sort(a);
+int max=a[n-2];
+for(i=0;i<n;i++)
+{
+if(max==a[i])
+c++;
+}
+if(c>1)
+System.out.println(-1);
+else
+System.out.println("second max is:"+a[n-2]);
+}
+}

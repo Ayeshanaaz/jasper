@@ -1,0 +1,21 @@
+DECLARE
+v_re_id number:=4001;
+v_re_name varchar2(10);
+v_count number;
+
+BEGIN
+select r.re_id,r.re_name,count(m.me_id) INTO v_re_id,v_re_name,v_count 
+from restaurant r join RESTAURANT_MENU_DETAIL rm on r.re_id=rm_re_fk join m on
+m.me_id=rm.rm_me_fk group by r.re_id,r.re_name;
+
+dbms_output.put_line('ID='|| v_re_id||' NAME=' || v_re_name ||' NoOfItems'||v_count);
+
+EXCEPTION
+WHEN NO_DATA_FOUND THEN
+dbms_output.put_line('Data is not available');
+
+WHEN TOO_MANY ROWS THEN
+dbms_output.put_line('plz use cursor');
+
+END;
+

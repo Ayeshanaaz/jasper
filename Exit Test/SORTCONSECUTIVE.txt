@@ -1,0 +1,29 @@
+import java.util.*;
+class SortEO
+{
+public static void main(String args[])
+{
+int n,c=0,i,j;
+Scanner sc=new Scanner(System.in);
+n=sc.nextInt();
+int a[]=new int[n];
+for(i=0;i<n;i++)
+{
+a[i]=sc.nextInt();
+}
+
+Arrays.sort(a);
+for(i=0;i<n;i++)
+{
+for(j=1;j<n;j++)
+{
+if(a[j]-a[i]==1)
+c++;
+}
+}
+if(c==n-1)
+System.out.println("yes");
+else
+System.out.println("no");
+}
+}
